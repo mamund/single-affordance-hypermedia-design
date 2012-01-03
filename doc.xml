@@ -1,0 +1,69 @@
+
+<?xml version="1.0" ?>
+<?xml-stylesheet type="text/xsl" href="doc.xsl"?>
+<!--
+  title:  h-factor example
+  date:   2010-06-15
+  author: mamund
+  notes:  example of H-Factor Hypermedia type design
+          see: http://amundsen.com/hypermedia
+-->
+<document>
+  <meta>
+    <title>H-Factor Sample</title>
+    <updated>2010-06-15</updated>
+    <author>mamund</author>
+  </meta>
+  <content>
+    <section>
+      <title>An implementation</title>
+      <para>
+        <text>This is a trivial hypermedia type implementation.</text>
+        <text>It can include links that point to other resources:</text>
+        <LO CL="document" href="http://amundsen.com" label="amundsen.com" />
+      </para>
+      <para>
+        <text>It can also include links that embed the resource within the current page:</text>
+        <eol />
+        <LE CL="document" href="http://amundsen.com/images/mca.jpg" label="mamund" />
+      </para>
+      <para>
+        <text>
+          It can include an query template for safe operations (e.g. HTTP GET). 
+        	Templates allow for inputs that can be decided at runtime:
+        </text>
+      </para>
+      <LT CL="search" href="http://search.yahoo.com/search" >
+        <data name="p" label="Search Yahoo!" />
+      </LT>
+    </section>
+    <section>
+      <para>
+        <text>You can even send data to the server using a non-idempotent write (e.g. HTTP POST):</text>
+      </para>
+      <LN CL="comment" CU="text/plain" href="http://amundsen.com/hypermedia/">
+        <data name="nickname" label="Nickname" /><eol />
+        <data name="comment" label="Comment" /><eol />
+      </LN>
+    </section>
+    <section>
+      <para>
+        <text>Idempotent operations such as "replace" (HTTP PUT) or "remove" (HTTP DELETE) are also supported.</text>
+      </para>
+      <LI CL="reviews" CM="delete" href="http://amundsen.com/hypermedia/examples/123" />
+    </section>
+    <section>
+    	<para>
+    		<text>
+    			This example uses control data for reads (CR) to set the "accept" header for 
+    			HTTP GET requests. In this example, the same URI is used w/ different CR values
+    			in order to download different representations of the same resource.
+    		</text>
+    	</para>
+    		<LE CL="data" CR="images/png" href="http://chart.apis.google.com/chart?cht=p3&amp;chd=t:60,40&amp;chs=250x100&amp;chl=Yes|No" label="data image"/><eol />
+    		<LE CL="data" CR="text/html"  href="http://amundsen.com/hypermedia/examples/dataview.ashx" label="data document"/><eol />
+    	<para>
+    	</para>
+    </section>
+  </content>
+</document>
